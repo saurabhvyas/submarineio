@@ -1,0 +1,18 @@
+
+
+body {
+  padding-top:120px;
+  background: #fafafa;
+  position: relative;
+}
+
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+  margin-left:150px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('http://tse2.mm.bing.net/th?id=OIP.Mea8c1180795c9004f6088613fc255940H0') bottom right 15% no-repeat #46B6AC;
+}
