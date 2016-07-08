@@ -55,12 +55,14 @@ var io = require('socket.io').listen(server);
 console.log("Server launched on port 8080 or " + process.env.PORT);
 
 
-io.on('connection', function(socket){
- console.log('a user connected');
-  socket.on('message', function(msg){
-	  console.log(msg);
-   });
- create_game.initRoom();
+// handle incoming connections from clients
+io.sockets.on('connection', function(socket) {
+	 console.log('a user connected with id : '+socket.id);
 
+    // once a client has connected, we expect to get a ping from them saying what room they want to join
+    socket.on('room', function(room) {
+        socket.join(room);
+		console.log(room);
+    });
 });
 

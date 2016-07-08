@@ -14,7 +14,11 @@
     Click "create" to create new multiplayer Game (2 players max) . . .
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+    <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="sample1">
+    <label class="mdl-textfield__label" for="sample1">Name Room</label>
+  </div>
+  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick="createGame()">
       Create Game
     </a>
   </div>
@@ -28,9 +32,10 @@
     Click "create" to create new multiplayer Game (4 players max) . . .
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+   <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
       Create Game
     </a>
+	
   </div>
 </div>
 </div>
@@ -41,8 +46,19 @@
 <script src="lib/js/material.min.js"></script>
 
 <script>
-var socket = io();
-socket.emit('message', 'mensaje del cliente');
+function createGame(){
+var socket = io.connect();
+
+// roomName to make
+var room = "testroom";
+
+socket.on('connect', function() {
+   // If connected will join room
+   socket.emit('room', room);
+});
+
+}
+
 </script>
 </body>
 </html>
