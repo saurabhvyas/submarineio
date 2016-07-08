@@ -1,7 +1,6 @@
 body {
   padding: 20px;
   font: 16px/22px "Open Sans", sans-serif;
-  background-image: url("../img/polygonal-texture-background-vector.jpg");
 }
 .container {
   margin: 0 auto;
@@ -13,7 +12,7 @@ body {
   display: inline-block;
   width: 300px;
   height: 160px;
-  margin: 80px;
+  margin: 10px;
   font-size: 32px;
   font-weight: 600;
   color: #fff;
@@ -46,7 +45,7 @@ body {
   background-color: #b8aa0e;
 }
 .panel.post:after {
-  content: "\f090 ";
+  content: "\f08d";
   font-size: 200px;
   color: #a5980d;
   top: 45px;
@@ -61,7 +60,7 @@ body {
   background-color: #0377c0;
 }
 .panel.comment:after {
-  content: "\f11b";
+  content: "\f075";
   font-size: 180px;
   color: #036bac;
   top: 30px;
@@ -74,7 +73,7 @@ body {
   background-color: #279824;
 }
 .panel.page:after {
-  content: "\f0cb ";
+  content: "\f15c";
   font-size: 160px;
   color: #238820;
   top: 62px;
@@ -87,7 +86,7 @@ body {
   background-color: #fc1c3e;
 }
 .panel.user:after {
-  content: "\f0e0 ";
+  content: "\f008";
   font-size: 200px;
   color: #ec0326;
   top: 45px;
