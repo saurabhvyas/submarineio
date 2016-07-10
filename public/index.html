@@ -9,7 +9,9 @@
 
 </head>
 <body>
+  <span id="usersID"></span>
 <div class="container">
+
   <div class="panel post">
     <a href="javascript:void();">Find Game</a>
   </div>
@@ -23,6 +25,17 @@
     <a href="javascript:void();">Feedback</a>
   </div>
   
+  <script src="lib/js/socket.io.js"></script>
+  <script>
+  var socket = io.connect();
+
+  socket.on('numberofusers', function(data) {
+  console.log("Number of users are " +data);
+  document.getElementById("usersID").innerHTML = data+" players online";
+  
+});
+
+  </script>
 </div>
 </body>
 </html>

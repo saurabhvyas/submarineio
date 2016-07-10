@@ -17,6 +17,8 @@ var app = express();
 //Importing create class
 var create_game = require('./server/creategame');
 
+//Numer of Users online
+var nUsers = 0;
 
 //Acessing static files (css,js..)
 app.use("/lib", express.static(path.join(__dirname + '/public/lib')));
@@ -55,14 +57,17 @@ var io = require('socket.io').listen(server);
 console.log("Server launched on port 8080 or " + process.env.PORT);
 
 
-// handle incoming connections from clients
-io.sockets.on('connection', function(socket) {
-	 console.log('a user connected with id : '+socket.id);
-
-    // once a client has connected, we expect to get a ping from them saying what room they want to join
-    socket.on('room', function(room) {
-        socket.join(room);
-		console.log(room);
+io.on('connection', function(socket){
+	nUsers++;
+	console.log("Numer of users connected ==>"+ nUsers)
+    socket.emit('numberofusers', nUsers, function (data) {
+      
     });
-});
+  
+    socket.on('disconnect', function(){
+	nUsers--;
+    //console.log('user disconnected');
+  });
 
+
+});
