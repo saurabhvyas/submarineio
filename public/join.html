@@ -1,0 +1,35 @@
+<html>
+<head>
+<style>
+.demo-list-icon {
+  width: 300px;
+}
+</style>
+</head>
+
+<link rel="stylesheet" href="lib/css/material.min.css">
+<link rel="stylesheet" href="lib/css/bootstrap.min.css">
+<body>
+
+<div id="list-room">
+<ul class="demo-list-icon mdl-list"></ul>
+
+<script src="lib/js/socket.io.js"></script>
+<script src="lib/js/material.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+</div>
+<script>
+var socket = io();
+ socket.on('rooms',  function(data){
+ console.log(data);
+
+for(x=0;x<data.length;x++){
+$("#list-room ul").append('<li>'+data[x]+'</li>');
+console.log(data[x]);
+}
+
+ });
+
+</script>
+</body>
+</html>

@@ -20,6 +20,8 @@ var create_game = require('./server/creategame');
 //Numer of Users online
 var nUsers = 0;
 
+var rooms=[];
+
 //Acessing static files (css,js..)
 app.use("/lib", express.static(path.join(__dirname + '/public/lib')));
 
@@ -39,6 +41,15 @@ app.get('/create.*', function(req, res){
 	
 });
 
+// Create a simple Express application
+app.get('/join.*', function(req, res){
+   //console.log("Página solicitada ===> "+req.params[0]);
+  // Serve static html, js, css, and image files from the 'public' directory
+  res.sendFile(__dirname + '/public/join.html');
+	
+});
+
+
 
 // Create a simple Express application
 app.get('/', function(req, res){
@@ -57,12 +68,32 @@ var io = require('socket.io').listen(server);
 console.log("Server launched on port 8080 or " + process.env.PORT);
 
 
+
 io.on('connection', function(socket){
 	nUsers++;
 	console.log("Numer of users connected ==>"+ nUsers)
     socket.emit('numberofusers', nUsers, function (data) {
       
     });
+
+  
+  socket.on('create', function(room) {
+    //socket.join(room);
+	rooms.push(room);
+	
+	console.log("Rooms Available");
+
+	for(x=0;x<rooms.length;x++){
+	
+	console.log(rooms[x]);
+
+	}
+  });
+  
+   socket.emit('rooms', rooms, function (data) {
+      
+    });
+  
   
     socket.on('disconnect', function(){
 	nUsers--;
@@ -71,3 +102,4 @@ io.on('connection', function(socket){
 
 
 });
+

@@ -47,18 +47,16 @@
 
 <script>
 function createGame(){
-var socket = io.connect();
+console.log("Starting connection to server");
+var socket = io();
 
 // roomName to make
-var room = "testroom";
+var room = document.getElementById('sample1').value;
 
-socket.on('connect', function() {
-   // If connected will join room
-   socket.emit('room', room);
-});
+// If connected will join room
+socket.emit('create', room);
 
 }
-
 </script>
 </body>
 </html>
