@@ -53,8 +53,11 @@ var socket = io();
 // roomName to make
 var room = document.getElementById('sample1').value;
 
-// If connected will join room
 socket.emit('create', room);
+socket.on('createdcheck', function(data){
+location.href = 'http://localhost:8080/game?rn='+room;
+  });
+
 
 }
 </script>
