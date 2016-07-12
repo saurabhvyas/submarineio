@@ -55,7 +55,7 @@ var room = document.getElementById('sample1').value;
 
 socket.emit('create', room);
 socket.on('createdcheck', function(data){
-location.href = 'http://localhost:8080/game?rn='+room;
+location.href = window.location.hostname+'\\'+room;
   });
 
 
