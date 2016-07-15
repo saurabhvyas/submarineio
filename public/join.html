@@ -24,7 +24,7 @@ var socket = io();
  console.log(data);
 
 for(x=0;x<data.length;x++){
-$("#list-room ul").append('<li>'+data[x]+'</li>');
+$("#list-room ul").append(' <li> <a> '+data[x]+'</li> </a> ');
 console.log(data[x]);
 }
 

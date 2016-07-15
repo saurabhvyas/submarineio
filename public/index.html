@@ -11,6 +11,9 @@
 <body>
   <span id="usersID"></span>
 
+      <ul id="messages"></ul>
+  
+
 <div class="container">
   <div class="panel post">
     <a href="/join.html">Find Game</a>
@@ -24,16 +27,73 @@
   <div class="panel user">
     <a href="javascript:void();">Feedback</a>
   </div>
+
+     
+    <form id="myform" action="">
+      
+     
+      
+       
+      <input id="m"   autocomplete="off" />
+      <button>Send</button>
+      
+      </form>
+
   
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script>
-  var socket = io.connect();
+   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+
+ $(document).ready(function(){
+
+console.log('ready ');
+
+
+ var socket = io.connect();
 
   socket.on('numberofusers', function(data) {
   console.log("Number of users are " +data);
   document.getElementById("usersID").innerHTML = "Online users :"+data;
   
 });
+
+
+   $('#myform').submit(function(){
+           
+          
+           
+     //  emit chat message when user clicks on submit btn  
+    socket.emit('chat message', $('#m').val());
+    
+
+     $('#m').val(''); //reset the value of text field 
+    
+    
+    return false;
+  }); 
+  
+
+// when a chat message is receieved 
+
+socket.on('chat message', function(msg){
+    console.log(msg);
+    
+    $('#messages').append($('<li>').text(msg));
+   
+  
+  });
+    
+
+
+
+ });
+
+  </script>
+
+
+  <script>
+ 
 
   </script>
 </div>

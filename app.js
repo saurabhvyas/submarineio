@@ -23,6 +23,7 @@ var nUsers = 0;
 
 var rooms=[];
 
+
 //Acessing static files (css,js..)
 app.use("/lib", express.static(path.join(__dirname + '/public/lib')));
 
@@ -79,6 +80,8 @@ var io = require('socket.io').listen(server);
 console.log("Server launched on port 8080 or " + process.env.PORT);
 
 
+io.to(rooms[0]).emit('welcome event');
+
 
 io.on('connection', function(socket){
 	nUsers++;
@@ -87,6 +90,15 @@ io.on('connection', function(socket){
       
     });
 
+
+  socket.on('chat message',(msg)=>{
+
+  console.log(msg);
+
+  io.emit('chat message',msg);
+
+
+  });
   
   socket.on('create', function(room) {
     //socket.join(room);
